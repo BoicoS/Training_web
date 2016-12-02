@@ -1,0 +1,55 @@
+
+<html>
+<head>
+<script>
+
+function getArguments (str){
+	var arg = str.replace(/x|\^2/g, "").match(/\-?\d/g);
+	for (var i in arg) arg[i]= Number(arg[i]);
+	return arg;
+}
+var arg = [];
+userequation = prompt ("Enter quadratic equation", "2x^2+4x+5=0");
+if (userequation==userequation.match (/^\-?\dx\^2\+?\-?\dx\+?\-?\d+\=0/)){
+	arg = getArguments(userequation);
+}
+	else if (userequation==userequation.match (/^\-?\dx\^2\+?\-?\d+\=0/)){
+		arg = getArguments(userequation);
+		arg.splice(1,0,0);
+	}
+		else if (userequation==userequation.match (/^\+?\-?\dx\+?\-?\d+\=0/)){
+			arg = getArguments(userequation);
+			arg.splice(0,0,0);
+		}
+			else alert ("Enter equation according to the pattern.");
+
+
+function quadrEquation (a,b,c){
+	var roots = [];
+	var disc = b*b-4*a*c;
+	if (disc ==0){
+		var root = -b/2*a;
+		roots.push(root);
+	}
+		else if (disc>0){
+			var root1 = (-b+ Math.sqrt(disc))/2*a;
+			var root2 = (-b- Math.sqrt(disc))/2*a;
+			roots.push(root1);
+			roots.push(root2);
+		}
+			else {
+				var noroot = "There is no solution: disc<0";
+				roots.push(noroot);
+			}
+	return roots
+
+}
+
+
+var solutions = quadrEquation (arg[0],arg[1],arg[2]);
+alert (solutions);
+</script>
+</head>
+<body>
+</body>
+</html>
