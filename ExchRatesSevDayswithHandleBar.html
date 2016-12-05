@@ -1,0 +1,140 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
+ 
+  <script id="text-template" type="text/x-handlebars-template">
+    <tr>
+                    
+					<th>Date</th>
+                    <th>Code</th>
+					<th>Abbreviation</th>
+					<th>Nominal</th>
+					<th>Valuta</th>
+					<th>Rates</th>
+					
+                </tr>
+    
+	{{#each Valcurs}}
+	
+    {{#each Valute}}
+	<tr>
+        
+		<th>{{../Date}}</th>
+		<th>{{NumCode}}</th>
+		<th>{{CharCode}}</th>
+		<th>{{Nominal}}</th>
+		<th>{{Name}}</th> 
+		<th>{{Value}} </th>
+		
+		
+	<tr>		
+    {{/each}}
+	
+	{{/each}}
+    
+  </script>
+ <style>
+            table, th, td {
+                border: 1px solid orange;
+            }
+    </style>
+ 
+ <table id="table table-striped"> </table>
+ 
+
+
+<script>
+   var textjs=  {"Valcurs":[]};
+   textjs.Valcurs.push(
+  { "Date": "15.11.2016",
+    "name": "Cursul oficial de schimb",
+    "Valute": [
+      {
+        "ID": "47",
+        "NumCode": "978",
+        "CharCode": "EUR",
+        "Nominal": "1",
+        "Name": "Euro",
+        "Value": "21.5465"
+      },
+      {
+        "ID": "44",
+        "NumCode": "840",
+        "CharCode": "USD",
+        "Nominal": "1",
+        "Name": "Dolar S.U.A.",
+        "Value": "19.9764"
+      },
+      {
+        "ID": "36",
+        "NumCode": "643",
+        "CharCode": "RUB",
+        "Nominal": "1",
+        "Name": "Rubla rusa",
+        "Value": "0.3011"
+      },
+      {
+        "ID": "35",
+        "NumCode": "946",
+        "CharCode": "RON",
+        "Nominal": "1",
+        "Name": "Leu romanesc",
+        "Value": "4.7662"
+      }
+	  ]
+	  }
+);
+
+textjs.Valcurs.push(
+{
+"Date": "14.11.2016",
+    "name": "Cursul oficial de schimb",
+    "Valute": [
+      {
+        "ID": "47",
+        "NumCode": "978",
+        "CharCode": "EUR",
+        "Nominal": "1",
+        "Name": "Euro",
+        "Value": "21.4465"
+      },
+      {
+        "ID": "44",
+        "NumCode": "840",
+        "CharCode": "USD",
+        "Nominal": "1",
+        "Name": "Dolar S.U.A.",
+        "Value": "19.8764"
+      },
+      {
+        "ID": "36",
+        "NumCode": "643",
+        "CharCode": "RUB",
+        "Nominal": "1",
+        "Name": "Rubla rusa",
+        "Value": "0.3111"
+      },
+      {
+        "ID": "35",
+        "NumCode": "946",
+        "CharCode": "RON",
+        "Nominal": "1",
+        "Name": "Leu romanesc",
+        "Value": "4.8662"
+      }
+    ]
+   
+});
+
+	// Grab the template script
+  //var theTemplateScript = $("#address-template").html();
+  
+  var theTemplateScript = document.getElementById("text-template").innerHTML;
+
+  // Compile the template
+  var theTemplate = Handlebars.compile(theTemplateScript);
+  // Pass our data to the template
+  var theCompiledHtml = theTemplate(textjs);
+
+  // Add the compiled html to the page
+  document.getElementById('table table-striped').innerHTML = theCompiledHtml;
+
+</script>
